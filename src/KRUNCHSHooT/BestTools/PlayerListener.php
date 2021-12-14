@@ -20,7 +20,7 @@ class PlayerListener implements Listener {
        $player = $event->getPlayer();
        if(!isset($this->plugin->playerSettings[str_replace("-", "", $player->getUniqueId()->toString())])) return;
        $ps = $this->plugin->getPlayerSetting($player);
-       $ps->save($this->getDataFolder() . "besttools.db", str_replace("-", "", $player->getUniqueId()->toString()));
+       $ps->save($this->plugin->getDataFolder() . "besttools.db", str_replace("-", "", $player->getUniqueId()->toString()));
        unset($this->plugin->playerSettings[str_replace("-", "", $player->getUniqueId()->toString())]);
    }
 }
