@@ -18,3 +18,6 @@ BestTools can automatically choose the best tool from your hotbar everytime you 
 2. Put the `BestTools.phar` into the `plugins` folder
 3. Restart Your Server
 4. Enjoy
+
+# Credits
+- Icons made from [www.flaticon.com](https://www.flaticon.com)
