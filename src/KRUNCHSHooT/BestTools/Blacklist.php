@@ -14,8 +14,8 @@ class Blacklist {
         for($p = 0; $p < count($bl); $p++){
             $ex = explode(":", $bl[$p]);
             if(count($ex) != 2) continue;
-            $this->mats[$p]["id"] = $ex[0];
-            $this->mats[$p]["meta"] = $ex[1];
+            $this->mats[$p]["id"] = intval($ex[0]);
+            $this->mats[$p]["meta"] = intval($ex[1]);
         }
     }
     
@@ -43,6 +43,18 @@ class Blacklist {
                 break;
             }
         }
+        $this->fix();
+    }
+    
+    private function fix(){
+        $fix = [];
+        $count = 0;
+        foreach($this->mats as $p => $val){
+            $fix[$count]["id"] = $val["id"];
+            $fix[$count]["meta"] = $val["meta"];
+            $count++;
+        }
+        $this->mats = $fix;
     }
     
     public function list(){
