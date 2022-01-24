@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KRUNCHSHooT\BestTools;
 
 use pocketmine\utils\Config;
+use pocketmine\math\Vector3;
 use SQLite3;
 
 class PlayerSetting {
@@ -14,6 +15,10 @@ class PlayerSetting {
     private $bl;
     /** int[] $btcache */
     public $btcache = [];
+    /** ?Vector3 $link */
+    public $link = null;
+    /** bool $cmode */
+    public $cmode = false;
     
     public function __construct($enable, $bl = []){
         $this->enable = $enable;
@@ -26,6 +31,21 @@ class PlayerSetting {
     
     public function isEnable(){
         return $this->enable;
+    }
+    
+    public function getLinked(){
+        return $this->link;
+    }
+    
+    public function setLinked(?Vector3 $v = null){
+        $this->link = $v;
+    }
+    
+    public function getFPStats(){
+        if($this->link !== null){
+            return "§aLinked!, §eCoordinate: (" . $this->link->x . "," . $this->link->y . "," . $this->link->z . ")";
+        }
+        return "§cOFF";
     }
     
     public function unvalidate(){

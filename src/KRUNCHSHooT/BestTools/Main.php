@@ -18,13 +18,19 @@ use SQLite3;
 
 use KRUNCHSHooT\BestTools\commands\BestToolsCommand;
 use KRUNCHSHooT\BestTools\commands\BlacklistCommand;
+use KRUNCHSHooT\BestTools\commands\FastPickCommand;
 
 class Main extends PluginBase {
     
     /** PlayerSetting[] $playerSettings */
     public $playerSettings = [];
+    /** ?int $maxdistance */
+    public $maxdistance = null;
     
     public function onEnable() : void {
+        $this->saveDefaultConfig();
+        
+        $this->maxdistance = (int) $this->getConfig()->get("max-distance");
         
         $db = new SQLite3($this->getDataFolder() . "besttools.db");
         $db->exec("CREATE TABLE IF NOT EXISTS besttools(uuid TEXT, besttools_use TINYINT(1), blacklist TEXT)");
@@ -34,7 +40,7 @@ class Main extends PluginBase {
         $this->getServer()->getPluginManager()->registerEvents(new BestToolsCacheListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);
         
-        $this->getServer()->getCommandMap()->registerAll("BestTools", [new BestToolsCommand($this), new BlacklistCommand($this)]);
+        $this->getServer()->getCommandMap()->registerAll("BestTools", [new BestToolsCommand($this), new BlacklistCommand($this), new FastPickCommand($this)]);
     }
     
     public function onDisable() : void {

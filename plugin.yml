@@ -1,6 +1,6 @@
 name: BestTools
 main: KRUNCHSHooT\BestTools\Main
-version: 1.0.0
+version: 1.1.0
 api: 4.0.0
 author: KRUNCHSHooT
 
@@ -11,3 +11,6 @@ permissions:
     besttools.blacklist:
        default: true
        description: "Allow player to blacklist some block"
+    besttools.fastpick:
+       default: true
+       description: "Allow player to use Fast Pickup Feature"
