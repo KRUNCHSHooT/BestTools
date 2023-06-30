@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KRUNCHSHooT\BestTools;
 
+use pocketmine\block\BlockTypeIds;
 use pocketmine\block\tile\Chest;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -38,7 +39,7 @@ class PlayerListener implements Listener {
        if($ps->getLinked() === null){
            return;
        }
-       if(floor($player->getPosition()->distance($ps->getLinked())) > $this->plugin->maxdistance){
+       if(floor($player->getPosition()->distance($ps->getLinked())) > $this->plugin->maxdistance || $ps->getLinked()->getWorld()->getFolderName() !== $player->getPosition()->getWorld()->getFolderName()){
            return;
        }
        $tile = $player->getWorld()->getTile($ps->getLinked());
@@ -66,11 +67,11 @@ class PlayerListener implements Listener {
        }
        $ps = $this->plugin->getPlayerSetting($player);
        if(!$ps->cmode) return;
-       if($block->getId() !== 54){
+       if($block->getTypeId() !== BlockTypeIds::CHEST){
            $player->sendMessage("§cBlock Must be a Chest!");
            return;
        }
-       $ps->setLinked($block->getPosition()->asVector3());
+       $ps->setLinked($block->getPosition());
        $ps->cmode = false;
        $event->cancel();
        $player->sendMessage("§aSuccess Linked Chest");

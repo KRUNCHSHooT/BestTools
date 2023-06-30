@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KRUNCHSHooT\BestTools\commands;
 
 use KRUNCHSHooT\BestTools\Main;
+use pocketmine\block\BlockTypeIds;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginOwned;
@@ -50,32 +51,42 @@ class BlacklistCommand extends Command implements PluginOwned {
             case "add":
                 if(isset($args[1])){
                     try{
-	                    $block = StringToItemParser::getInstance()->parse($args[1]) ?? LegacyStringToItemParser::getInstance()->parse($args[1]);
+	                    $item = StringToItemParser::getInstance()->parse($args[1]) ?? LegacyStringToItemParser::getInstance()->parse($args[1]);
 		            }catch(LegacyStringToItemParserException $e){
 	                    $sender->sendMessage(KnownTranslationFactory::commands_give_item_notFound($args[1])->prefix(TextFormat::RED));
 			            return;
 	                }
                 } else {
-                    $block = $sender->getInventory()->getItemInHand();
+                    $item = $sender->getInventory()->getItemInHand();
+                }
+
+                if($item->getBlock()->getTypeId() == BlockTypeIds::AIR){
+                    // send Message only block can be inserted to blacklist
+                    return;
                 }
 		        
-		        $ps->getBlacklist()->add($block->getId(), $block->getMeta());
-	            $sender->sendMessage("§f[§cBestTools§f] §e" . $block->getName() . " has been added to Blacklist");
+		        $ps->getBlacklist()->add($item->getBlock());
+	            $sender->sendMessage("§f[§cBestTools§f] §e" . $item->getVanillaName() . " has been added to Blacklist");
                 break;
             case "remove":
                 if(isset($args[1])){
                     try{
-	                    $block = StringToItemParser::getInstance()->parse($args[1]) ?? LegacyStringToItemParser::getInstance()->parse($args[1]);
+	                    $item = StringToItemParser::getInstance()->parse($args[1]) ?? LegacyStringToItemParser::getInstance()->parse($args[1]);
 		            }catch(LegacyStringToItemParserException $e){
 	                    $sender->sendMessage(KnownTranslationFactory::commands_give_item_notFound($args[1])->prefix(TextFormat::RED));
 			            return;
 	                }
                 } else {
-                    $block = $sender->getInventory()->getItemInHand();
+                    $item = $sender->getInventory()->getItemInHand();
+                }
+
+                if($item->getBlock()->getTypeId() == BlockTypeIds::AIR){
+                    // send Message only block can be inserted to blacklist
+                    return;
                 }
 	            
-                $ps->getBlacklist()->remove($block->getId(), $block->getMeta());
-	            $sender->sendMessage("§f[§cBestTools§f] §e" . $block->getName() . " has been removed from Blacklist");
+                $ps->getBlacklist()->remove($item->getBlock());
+	            $sender->sendMessage("§f[§cBestTools§f] §e" . $item->getVanillaName() . " has been removed from Blacklist");
                 break;
             case "clear":
             case "reset":

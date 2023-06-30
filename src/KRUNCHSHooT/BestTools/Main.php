@@ -26,9 +26,13 @@ class Main extends PluginBase {
     public $playerSettings = [];
     /** ?int $maxdistance */
     public $maxdistance = null;
+
+    private static self $instance;
     
     public function onEnable() : void {
         $this->saveDefaultConfig();
+
+        self::$instance = $this;
         
         $this->maxdistance = (int) $this->getConfig()->get("max-distance");
         
@@ -72,4 +76,11 @@ class Main extends PluginBase {
             $ps->save($this->getDataFolder() . "besttools.db", $uuid);
         }
     }
+
+	/**
+	 * @return self
+	 */
+	public static function getInstance(): self {
+		return self::$instance;
+	}
 }
