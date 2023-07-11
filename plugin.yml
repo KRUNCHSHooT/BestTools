@@ -5,12 +5,15 @@ api: 5.0.0
 author: KRUNCHSHooT
 
 permissions:
-    besttools.use:
-       default: true
-       description: "allow player to use BestTools"
-    besttools.blacklist:
-       default: true
-       description: "Allow player to blacklist some block"
-    besttools.fastpick:
-       default: true
-       description: "Allow player to use Fast Pickup Feature"
+  besttools.use:
+    default: true
+    description: "allow player to use BestTools"
+  besttools.blacklist:
+    default: true
+    description: "Allow player to blacklist some block"
+  besttools.reload:
+    default: op
+    description: "Allow player to blacklist some block"
+  besttools.fastpick:
+    default: true
+    description: "Allow player to use Fast Pickup Feature"

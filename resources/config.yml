@@ -1,1 +1,33 @@
+# Fast Pick Settings
+fastpick-enabled: true
 max-distance: 20
+
+# BestTools Settings
+survival-only: true
+
+default-settings:
+  besttools-enabled: true
+  favorite-slot: 8
+
+global-blacklist:
+  - "bedrock"
+
+# Database Settings
+database:
+  # The database type. "sqlite" and "mysql" are supported.
+  type: sqlite
+
+  # Edit these settings only if you choose "sqlite".
+  sqlite:
+    # The file name of the database in the plugin data folder.
+    # You can also put an absolute path here.
+    file: data.sqlite
+  # Edit these settings only if you choose "mysql".
+  mysql:
+    host: 127.0.0.1
+    username: root
+    password: ""
+    schema: playerSettings
+  # The maximum number of simultaneous SQL queries
+  # Recommended: 1 for sqlite, 2 for MySQL. You may want to further increase this value if your MySQL connection is very slow.
+  worker-limit: 1

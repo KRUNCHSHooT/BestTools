@@ -4,41 +4,34 @@ declare(strict_types=1);
 
 namespace KRUNCHSHooT\BestTools\commands;
 
+use CortexPE\Commando\BaseCommand;
+use KRUNCHSHooT\BestTools\commands\enums\FastPickEnumCommand;
 use KRUNCHSHooT\BestTools\Main;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginOwned;
 use pocketmine\player\Player;
 
-class FastPickCommand extends Command implements PluginOwned {
+class FastPickCommand extends BaseCommand {
     
-    public Main $plugin;
-    
-    public function __construct(Main $plugin){
-        
-        $this->plugin = $plugin;
-        
-        parent::__construct("fastpick", 'to turn BestTools Fast Pickup link and unlink.', "/fastpick [link or unlink]", ["fpu"]);
-        
-        $this->setPermission("besttools.fastpick");
-    }
-    
-    public function execute(CommandSender $sender, string $label, array $args){
-        
-        if(!$this->testPermission($sender)) return;
-        
+	/**
+	 * @param CommandSender $sender
+	 * @param string $aliasUsed
+	 * @param array $args
+	 */
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void {
         if(!$sender instanceof Player){
             $sender->sendMessage("Hi Console!");
             return;
         }
         
-        $ps = $this->plugin->getPlayerSetting($sender);
-        if(!isset($args[0])){
+        $ps = $this->plugin->getPlayerManager()->getPlayerSetting($sender);
+        if(!isset($args["option"])){
             $sender->sendMessage("§l§eBestTools §dFastPick §eStats!\n§rstatus: " . $ps->getFPStats() . "\n§e/fpu help - to view more info for this command");
             return;
         }
         
-        switch(strtolower($args[0])){
+        switch(strtolower($args["option"])){
             case "help":
                 $sender->sendMessage("§e[ BestTools Fast Pickup Arguments ] \n§f/fpu link - to link the chest you want to store\n§f/fpu unlink - to unlink Chest");
                 break;
@@ -57,10 +50,10 @@ class FastPickCommand extends Command implements PluginOwned {
                 break;
         }
         return;
-    }
+	}
     
-    public function getOwningPlugin(): Main
-    {
-        return $this->plugin;
-    }
+	protected function prepare(): void {
+        $this->setPermission("besttools.fastpick");
+        $this->registerArgument(0, new FastPickEnumCommand("option"));
+	}
 }

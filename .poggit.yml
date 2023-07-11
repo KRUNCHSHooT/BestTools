@@ -6,4 +6,12 @@ projects:
   BestTools:
     path: ""
     icon: icon.png
+    libs:
+      - src: poggit/libasynql/libasynql
+        version: ^4.2.0
+      - src: ACM-PocketMine-MP/Commando/Commando
+        version: ^3.2.0
+        branch: PM5
+      - src: jojoe77777/FormAPI/LibFormAPI
+        version: ^2.1.1
 ...
