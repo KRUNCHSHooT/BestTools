@@ -22,6 +22,6 @@ class ResetSubCommand extends BaseSubCommand {
 	}
 	
 	protected function prepare(): void {
-        $this->setPermission("besttools.use");
+        $this->setPermission("besttools.reset");
 	}
 }

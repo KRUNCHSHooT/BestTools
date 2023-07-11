@@ -1,15 +1,17 @@
+# BestTools Configuration
+
 # Fast Pick Settings
-fastpick-enabled: true
-max-distance: 20
+fastpick-enabled: true # Set to true to enable the fast pick feature
+max-distance: 20 # The maximum distance at which the fast pick feature can be used
 
 # BestTools Settings
-survival-only: true
+survival-only: true # Set to true to limit the BestTools feature to survival mode only
 
 default-settings:
-  besttools-enabled: true
-  favorite-slot: 8
-
-global-blacklist:
+  besttools-enabled: true # Set to true to enable the BestTools feature by default when player first time join to your server
+  favorite-slot: 8 # Specifies the favorite slot for BestTools work when that is no item to use for breaking block (range 0 - 8)
+ 
+global-blacklist: # Specifies a list of items to be blacklisted globally
   - "bedrock"
 
 # Database Settings

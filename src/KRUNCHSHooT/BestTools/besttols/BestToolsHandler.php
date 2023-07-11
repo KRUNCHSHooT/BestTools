@@ -111,15 +111,11 @@ class BestToolsHandler
 
     public static function isDamageable(Item $item)
     {
-        if($item->equals(VanillaItems::AIR())) {
+        if($item->isNull()) {
             return false;
         }
 
-        if($item instanceof Durable) {
-            return true;
-        } else {
-            return false;
-        }
+        return $item instanceof Durable;
     }
 
     public static function getFavoriteSlot(Player $player){
