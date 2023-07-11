@@ -1,6 +1,6 @@
 name: BestTools
 main: KRUNCHSHooT\BestTools\Main
-version: 2.1.0
+version: 2.1.1
 api: 5.0.0
 author: KRUNCHSHooT
 
@@ -14,6 +14,9 @@ permissions:
   besttools.reload:
     default: op
     description: "Allow player to blacklist some block"
+  besttools.reset:
+    default: op
+    description: "Allow Player to Reset Player Database"
   besttools.fastpick:
     default: true
     description: "Allow player to use Fast Pickup Feature"

@@ -12,6 +12,7 @@ use KRUNCHSHooT\BestTools\commands\subcommands\DisableSubCommand;
 use KRUNCHSHooT\BestTools\commands\subcommands\EnableSubCommand;
 use KRUNCHSHooT\BestTools\commands\subcommands\FavSlotSubCommand;
 use KRUNCHSHooT\BestTools\commands\subcommands\ReloadSubCommand;
+use KRUNCHSHooT\BestTools\commands\subcommands\ResetSubCommand;
 use KRUNCHSHooT\BestTools\commands\subcommands\StatusSubCommand;
 use KRUNCHSHooT\BestTools\Main;
 use pocketmine\command\CommandSender;
@@ -125,5 +126,6 @@ class BestToolsCommand extends BaseCommand {
         $this->registerSubCommand(new BlackListSubCommand("blacklist", "To do something with blacklist feature", ["bt"]));
         $this->registerSubCommand(new FavSlotSubCommand("favorite-slot", "To set your favorite slot when that is not tools/weapons compatible found"));
         $this->registerSubCommand(new ReloadSubCommand("reload"));
+        $this->registerSubCommand(new ResetSubCommand("reset"));
 	}
 }

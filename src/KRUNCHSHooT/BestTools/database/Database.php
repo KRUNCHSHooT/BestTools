@@ -84,5 +84,6 @@ class Database
     public function reset()
     {
         $this->database->executeChange(self::RESET);
+        $this->database->waitAll();
     }
 }

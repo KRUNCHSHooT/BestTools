@@ -67,6 +67,15 @@ class Main extends PluginBase
         $this->globalBlacklist = new GlobalBlacklist($this->getConfig()->get("global-blacklist"));
     }
 
+    public function reset()
+    {
+        $this->database->reset();
+        $this->playerManager = new PlayerManager();
+        foreach($this->getServer()->getOnlinePlayers() as $player){
+            $this->playerManager->createPlayerSetting($player);
+        }
+    }
+
     /**
      * @return self
      */
