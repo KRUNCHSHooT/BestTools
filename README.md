@@ -14,7 +14,7 @@ BestTools can automatically choose the best tool from your hotbar everytime you 
 | /besttools | `besttools.use` | true | `/bt` | `/bt enable` `/bt disable` |
 
 # How To Install 
-1. Download the plugin from poggit or [here](https://poggit.pmmp.io/r/152593/BestTools_dev-2.phar)
+1. Download the plugin from poggit or [here](https://poggit.pmmp.io/r/215749/BestTools_dev-11.phar)
 2. Put the `BestTools.phar` into the `plugins` folder
 3. Restart Your Server
 4. Enjoy
